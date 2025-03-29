@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block title %}Home - Student Tracker API{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8 mx-auto text-center">
+        <h1 class="display-4 mb-4">Student Tracker API</h1>
+        <p class="lead">A simple API for tracking student attendance and performance</p>
+    </div>
+</div>
+
+<div class="row mt-5">
+    <div class="col-md-4">
+        <div class="card h-100">
+            <div class="card-body">
+                <h5 class="card-title">Student Management</h5>
+                <p class="card-text">Manage student records with details like name, class, and admission number.</p>
+                <a href="/api/students/" class="btn btn-primary">View API</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card h-100">
+            <div class="card-body">
+                <h5 class="card-title">Attendance Tracking</h5>
+                <p class="card-text">Track student attendance with options for present, absent, or late status.</p>
+                <a href="/api/attendance/" class="btn btn-primary">View API</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card h-100">
+            <div class="card-body">
+                <h5 class="card-title">Performance Records</h5>
+                <p class="card-text">Record and analyze student performance across different subjects.</p>
+                <a href="/api/performance/" class="btn btn-primary">View API</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-5">
+    <div class="col-md-8 mx-auto">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="mb-0">API Documentation</h4>
+            </div>
+            <div class="card-body">
+                <p>The Student Tracker API provides the following endpoints:</p>
+                <ul>
+                    <li><code>/api/students/</code> - Student management</li>
+                    <li><code>/api/attendance/</code> - Attendance tracking</li>
+                    <li><code>/api/attendance/summary/</code> - Attendance statistics</li>
+                    <li><code>/api/performance/</code> - Performance records</li>
+                    <li><code>/api/performance/summary/</code> - Performance statistics</li>
+                </ul>
+                <p>Use the API browser to explore the available endpoints and their functionality.</p>
+                <div class="text-center mt-3">
+                    <a href="/api/" class="btn btn-primary">Explore API</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

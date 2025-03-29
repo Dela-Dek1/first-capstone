@@ -1,0 +1,160 @@
+{% extends 'base.html' %}
+
+{% block title %}API Documentation - Student Tracker API{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-10 mx-auto">
+        <div class="card">
+            <div class="card-header">
+                <h2 class="mb-0">Student Tracker API Documentation</h2>
+            </div>
+            <div class="card-body">
+                <div class="alert alert-info">
+                    <strong>Base URL:</strong> /api/
+                </div>
+                
+                <h3 class="mt-4 mb-3">Student Management</h3>
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Endpoint</th>
+                                <th>Method</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>/api/students/</code></td>
+                                <td>GET</td>
+                                <td>List all students</td>
+                            </tr>
+                            <tr>
+                                <td><code>/api/students/</code></td>
+                                <td>POST</td>
+                                <td>Create a new student</td>
+                            </tr>
+                            <tr>
+                                <td><code>/api/students/{id}/</code></td>
+                                <td>GET</td>
+                                <td>Retrieve a specific student</td>
+                            </tr>
+                            <tr>
+                                <td><code>/api/students/{id}/</code></td>
+                                <td>PUT/PATCH</td>
+                                <td>Update a student record</td>
+                            </tr>
+                            <tr>
+                                <td><code>/api/students/{id}/</code></td>
+                                <td>DELETE</td>
+                                <td>Delete a student</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <h3 class="mt-4 mb-3">Attendance Tracking</h3>
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Endpoint</th>
+                                <th>Method</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>/api/attendance/</code></td>
+                                <td>GET</td>
+                                <td>List all attendance records</td>
+                            </tr>
+                            <tr>
+                                <td><code>/api/attendance/</code></td>
+                                <td>POST</td>
+                                <td>Create a new attendance record</td>
+                            </tr>
+                            <tr>
+                                <td><code>/api/attendance/{id}/</code></td>
+                                <td>GET</td>
+                                <td>Retrieve a specific attendance record</td>
+                            </tr>
+                            <tr>
+                                <td><code>/api/attendance/{id}/</code></td>
+                                <td>PUT/PATCH</td>
+                                <td>Update an attendance record</td>
+                            </tr>
+                            <tr>
+                                <td><code>/api/attendance/{id}/</code></td>
+                                <td>DELETE</td>
+                                <td>Delete an attendance record</td>
+                            </tr>
+                            <tr>
+                                <td><code>/api/attendance/summary/</code></td>
+                                <td>GET</td>
+                                <td>Get attendance statistics</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <h3 class="mt-4 mb-3">Performance Tracking</h3>
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Endpoint</th>
+                                <th>Method</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>/api/performance/</code></td>
+                                <td>GET</td>
+                                <td>List all performance records</td>
+                            </tr>
+                            <tr>
+                                <td><code>/api/performance/</code></td>
+                                <td>POST</td>
+                                <td>Create a new performance record</td>
+                            </tr>
+                            <tr>
+                                <td><code>/api/performance/{id}/</code></td>
+                                <td>GET</td>
+                                <td>Retrieve a specific performance record</td>
+                            </tr>
+                            <tr>
+                                <td><code>/api/performance/{id}/</code></td>
+                                <td>PUT/PATCH</td>
+                                <td>Update a performance record</td>
+                            </tr>
+                            <tr>
+                                <td><code>/api/performance/{id}/</code></td>
+                                <td>DELETE</td>
+                                <td>Delete a performance record</td>
+                            </tr>
+                            <tr>
+                                <td><code>/api/performance/summary/</code></td>
+                                <td>GET</td>
+                                <td>Get performance statistics</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <h3 class="mt-4 mb-3">Authentication</h3>
+                <div class="alert alert-warning">
+                    <strong>Note:</strong> All API endpoints require authentication.
+                </div>
+                <p>You can authenticate using:</p>
+                <ul>
+                    <li>Session authentication (via login page)</li>
+                    <li>Basic authentication (username/password in request header)</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
