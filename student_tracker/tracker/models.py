@@ -1,9 +1,18 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-# Create your models here.
+
+class Teacher(models.Model):
+    name = models.CharField(max_length=255)
+    email = models.EmailField(unique=True)
+    subject = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.name
+
+
 class Student(models.Model):
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100)  
     class_name = models.CharField(max_length=50)
     admission_number = models.CharField(max_length=20, unique=True)
     enrollment_date = models.DateField()
@@ -25,17 +34,23 @@ class Attendance(models.Model):
     timestamp = models.DateTimeField(auto_now_add=True)
     
     class Meta:
-        unique_together = ('student', 'date')
-    
+        constraints = [
+            models.UniqueConstraint(fields=['student', 'date'], name='unique_student_attendance')
+        ]
+        ordering = ['id']
+
     def __str__(self):
         return f"{self.student.name} - {self.date} - {self.status}"
 
 class Performance(models.Model):
     student = models.ForeignKey(Student, on_delete=models.CASCADE, related_name='performances')
     subject = models.CharField(max_length=50)
-    score = models.FloatField()
+    score = models.FloatField()  
     date_recorded = models.DateField()
     recorded_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
     
+    class Meta:
+        ordering = ['-date_recorded']  
+
     def __str__(self):
-        return f"{self.student.name} - {self.subject} - {self.score}"
+        return f"{self.student.name} - {self.subject} - {self.score}"  

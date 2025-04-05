@@ -1,0 +1,46 @@
+/* Custom styles for Student Tracker API */
+
+body {
+    background-color: #f8f9fa;
+}
+
+.navbar {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.card {
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border: none;
+}
+
+.card-header {
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #e9ecef;
+}
+
+code {
+    color: #d63384;
+    background-color: #f8f9fa;
+    padding: 2px 4px;
+    border-radius: 4px;
+}
+
+footer {
+    border-top: 1px solid #e9ecef;
+}
+
+.table-responsive {
+    overflow-x: auto;
+}
+
+/* Custom styles for API documentation */
+.endpoint {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.endpoint:last-child {
+    border-bottom: none;
+}

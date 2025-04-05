@@ -12,9 +12,12 @@ import csv
 import datetime
 from io import BytesIO
 import xlsxwriter
-
-from .models import Student, Attendance, Performance
-from .serializers import UserSerializer, StudentSerializer, AttendanceSerializer, PerformanceSerializer
+from rest_framework import viewsets
+from .models import User, Teacher, Student, Attendance, Performance
+from .serializers import UserSerializer, TeacherSerializer, StudentSerializer, AttendanceSerializer, PerformanceSerializer
+from django.contrib.auth import logout
+from django.http import JsonResponse
+from django.shortcuts import redirect
 
 # Define filter classes FIRST
 class AttendanceFilter(filters.FilterSet):
@@ -65,7 +68,7 @@ def register(request):
 
 # API ViewSets - AFTER filter classes are defined
 class StudentViewSet(viewsets.ModelViewSet):
-    queryset = Student.objects.all()
+    queryset = Student.objects.all().order_by('id')
     serializer_class = StudentSerializer
     permission_classes = [IsTeacherOrReadOnly]
     filterset_fields = ['class_name']
@@ -73,10 +76,10 @@ class StudentViewSet(viewsets.ModelViewSet):
     ordering_fields = ['name', 'enrollment_date', 'class_name']
 
 class AttendanceViewSet(viewsets.ModelViewSet):
-    queryset = Attendance.objects.all()
+    queryset = Attendance.objects.all() 
     serializer_class = AttendanceSerializer
     permission_classes = [IsTeacherOrReadOnly]
-    filterset_class = AttendanceFilter
+    filterset_fields = ['student', 'date', 'status']
     search_fields = ['student__name', 'status']
     ordering_fields = ['date', 'status']
     
@@ -166,7 +169,7 @@ class AttendanceViewSet(viewsets.ModelViewSet):
         return Response({'error': 'Format not supported'}, status=400)
 
 class PerformanceViewSet(viewsets.ModelViewSet):
-    queryset = Performance.objects.all()
+    queryset = Performance.objects.all().order_by('id')
     serializer_class = PerformanceSerializer
     permission_classes = [IsTeacherOrReadOnly]
     filterset_class = PerformanceFilter
@@ -251,3 +254,18 @@ class PerformanceViewSet(viewsets.ModelViewSet):
             return response
         
         return Response({'error': 'Format not supported'}, status=400)
+
+class TeacherViewSet(viewsets.ModelViewSet):
+    queryset = Teacher.objects.all()
+    serializer_class = TeacherSerializer
+
+# Custom logout view
+def custom_logout_view(request):
+    if request.method in ["POST", "GET"]:  # Allow GET and POST requests
+        logout(request)
+        # For API response
+        if request.is_ajax() or request.accepts('application/json'):
+            return JsonResponse({"message": "Logged out successfully"}, status=200)
+        # For regular HTTP requests (redirect to homepage or login)
+        return redirect("/")
+    return JsonResponse({"error": "Method not allowed"}, status=405)

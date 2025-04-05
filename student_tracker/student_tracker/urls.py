@@ -20,12 +20,10 @@ from django.contrib.auth import views as auth_views
 from rest_framework.routers import DefaultRouter
 from tracker import views
 
-
 router = DefaultRouter()
-router.register(r'students', views.StudentViewSet)
-router.register(r'attendance', views.AttendanceViewSet)
-router.register(r'performance', views.PerformanceViewSet)
-
+router.register(r'students', views.StudentViewSet, basename='student')
+router.register(r'attendance', views.AttendanceViewSet, basename='attendance')
+router.register(r'performance', views.PerformanceViewSet, basename='performance')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -35,5 +33,5 @@ urlpatterns = [
     path('api-auth/', include('rest_framework.urls')),
     path('login/', auth_views.LoginView.as_view(), name='login'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
-    path('register/', views.register, name='register'),  
+    path('register/', views.register, name='register'),
 ]
